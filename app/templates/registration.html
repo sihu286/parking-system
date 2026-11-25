@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장애인 차량 등록</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="registration">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <!-- 등록 폼 -->
+            <div class="card">
+                <div class="section-title-row">
+                    <h3>등록 화면</h3>
+                </div>
+                <form id="vehicleForm" class="form-grid two-col">
+                    <div class="form-group">
+                        <label for="rfid_uid">RFID UID *</label>
+                        <input type="text" id="rfid_uid" required placeholder="예: A1B2C3D4E5F6">
+                    </div>
+                    <div class="form-group">
+                        <label for="car_number">차량번호 *</label>
+                        <input type="text" id="car_number" required placeholder="예: 127가3456">
+                    </div>
+                    <div class="form-group">
+                        <label for="owner_name">차량 소유주 *</label>
+                        <input type="text" id="owner_name" required placeholder="예: 홍길동">
+                    </div>
+
+                    <div class="form-group">
+                         <label for="disabled_person_name">장애인 이름</label>
+                         <input type="text" id="disabled_person_name" required placeholder="예: 홍길동"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="expire_date">만료일자 *</label>
+                        <input type="date" id="expire_date" required>
+                    </div>
+                    <div class="form-actions col-span-2">
+                        <button type="submit" class="primary-btn" id="vehicleSubmitBtn">등록하기</button>
+                        <button type="button" class="secondary-btn hidden" id="vehicleCancelBtn">수정 취소</button>
+                    </div>
+                </form>
+                <p id="vehicleFormMessage" class="form-message"></p>
+            </div>
+
+            <!-- 등록된 차량 목록 -->
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>등록된 차량 목록</h3>
+                    <span class="subtle-badge" id="vehicleCountText">0대</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>RFID UID</th>
+                                <th>차량번호</th>
+                                <th>소유주</th>
+                                <th>장애인 이름</th>
+                                <th>만료일자</th>
+                                <th>상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicleTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/registration.js"></script>
+</body>
+</html>

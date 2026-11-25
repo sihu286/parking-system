@@ -1,0 +1,15 @@
+<div class="topbar">
+  <div class="topbar-right">
+    <div class="alarm-container">
+      <button id="alarmBtn" class="alarm-btn" type="button">
+        🔔
+        <span id="alarmCount" class="alarm-badge" style="display:none;">0</span>
+      </button>
+      <div id="alarmDropdown" class="alarm-dropdown hidden"></div>
+    </div>
+
+    <div id="headerUserName"></div>
+    <div id="headerUserRole"></div>
+    <button id="logoutBtn" type="button">로그아웃</button>
+  </div>
+</div>

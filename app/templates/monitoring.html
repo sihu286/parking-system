@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 모니터링</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="monitoring">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <!-- 통계 칩 4개 -->
+            <div class="stat-chips-row">
+                <div class="stat-chip-card">
+                    <span class="stat-chip-label">일반 주차칸 사용가능</span>
+                    <span class="stat-chip-value green" id="monStatGeneralOn">0</span>
+                </div>
+                <div class="stat-chip-card">
+                    <span class="stat-chip-label">일반 주차칸 사용중</span>
+                    <span class="stat-chip-value red" id="monStatGeneralOff">0</span>
+                </div>
+                <div class="stat-chip-card">
+                    <span class="stat-chip-label">장애인 주차칸 사용가능</span>
+                    <span class="stat-chip-value green" id="monStatDisabledOn">0</span>
+                </div>
+                <div class="stat-chip-card">
+                    <span class="stat-chip-label">장애인 주차칸 사용중</span>
+                    <span class="stat-chip-value red" id="monStatDisabledOff">0</span>
+                </div>
+            </div>
+
+            <!-- 주차 현황 zone viewer -->
+            <div class="card zone-viewer-card">
+                <div class="zone-nav-header">
+                    <span class="zone-now-label">현재 구역</span>
+                    <span class="zone-now-name" id="monCurrentZoneName">-</span>
+                </div>
+                <div class="zone-viewer-body">
+                    <button class="zone-nav-btn" id="monPrevZone">&#8249;</button>
+                    <div class="zone-slots-area" id="monZoneSlots"></div>
+                    <button class="zone-nav-btn" id="monNextZone">&#8250;</button>
+                </div>
+                <div class="zone-selector-row">
+                    <span class="zone-selector-label">구역 선택</span>
+                    <div class="chip-row" id="monZoneChips"></div>
+                </div>
+            </div>
+
+            <!-- 현재 입차 중 차량 리스트 -->
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>현재 입차 중 차량 리스트</h3>
+                    <span class="subtle-badge" id="activeCountText">0대</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>차량번호</th>
+                                <th>입차 시간</th>
+                                <th>RFID 등록 여부</th>
+                                <th>상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activeParkingBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/monitoring.js"></script>
+</body>
+</html>

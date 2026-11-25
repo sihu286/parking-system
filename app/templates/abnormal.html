@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상 상황 관리</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="abnormal">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <!-- 기간 설정 -->
+            <div class="card filters-card">
+                <div class="section-title-row compact-gap">
+                    <strong>기간 설정</strong>
+                    <div class="chip-row" id="periodButtons">
+                        <button class="chip-btn active" data-period="all">전체</button>
+                        <button class="chip-btn" data-period="day">일</button>
+                        <button class="chip-btn" data-period="week">주</button>
+                        <button class="chip-btn" data-period="month">월</button>
+                        <button class="chip-btn" data-period="custom">사용자 지정</button>
+                    </div>
+                </div>
+                <div class="date-range-row hidden" id="customDateRange">
+                    <input type="date" id="abnormalStartDate">
+                    <span>~</span>
+                    <input type="date" id="abnormalEndDate">
+                </div>
+            </div>
+
+            <!-- 통계 카드 4개 (클릭으로 필터) -->
+            <div class="abnormal-stat-row">
+                <div class="abnormal-stat-card active" data-status="전체">
+                    <div class="abnormal-stat-title">전체</div>
+                    <div class="abnormal-stat-value" id="abnormalStatTotal">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="미처리">
+                    <div class="abnormal-stat-title">미처리</div>
+                    <div class="abnormal-stat-value red" id="abnormalStatPending">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="처리중">
+                    <div class="abnormal-stat-title">처리 중</div>
+                    <div class="abnormal-stat-value yellow" id="abnormalStatProcessing">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="완료">
+                    <div class="abnormal-stat-title">완료</div>
+                    <div class="abnormal-stat-value green" id="abnormalStatDone">0</div>
+                </div>
+            </div>
+
+            <!-- 이상 상황 목록 -->
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>이상 상황 목록</h3>
+                    <span class="subtle-badge" id="abnormalRoleInfo"></span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>발생 시간</th>
+                                <th>구역</th>
+                                <th>차량번호</th>
+                                <th>이벤트 유형</th>
+                                <th>상태 변경</th>
+                                <th>조치 내용</th>
+                                <th>저장 / 초과 처리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="abnormalTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/abnormal.js"></script>
+</body>
+</html>

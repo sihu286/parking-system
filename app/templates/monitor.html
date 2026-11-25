@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>실시간 모니터링</title>
+    <link rel="stylesheet" href="/static/css/monitor.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- 사이드 메뉴 -->
+    <aside class="sidebar">
+        <h2>메뉴</h2>
+        <ul>
+            <li>카테고리1</li>
+            <li>카테고리2</li>
+            <li>카테고리3</li>
+            <li>카테고리4</li>
+            <li>카테고리5</li>
+        </ul>
+    </aside>
+
+    <!-- 메인 -->
+    <main class="main">
+
+        <!-- 주차 현황 -->
+        <section class="card">
+            <h3>주차 현황</h3>
+            <div id="parking-grid" class="grid"></div>
+        </section>
+
+        <!-- 입차 대기 -->
+        <section class="card">
+            <h3>입차 대기 상태</h3>
+            <ul id="waiting-list"></ul>
+        </section>
+
+        <!-- 이상 상황 -->
+        <section class="card">
+            <h3>이상 상황 목록</h3>
+            <ul id="event-list"></ul>
+        </section>
+
+        <!-- 로그 -->
+        <section class="card">
+            <h3>최근 입출차 로그</h3>
+            <ul id="log-list"></ul>
+        </section>
+
+    </main>
+</div>
+
+<script src="/static/js/monitor.js"></script>
+
+</body>
+</html>

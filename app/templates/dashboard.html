@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="dashboard">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <div class="dashboard-main-grid">
+                <!-- 주차 현황 zone viewer -->
+                <div class="card zone-viewer-card">
+                    <div class="zone-nav-header">
+                        <span class="zone-now-label">현재 구역</span>
+                        <span class="zone-now-name" id="dashCurrentZoneName">-</span>
+                    </div>
+                    <div class="zone-viewer-body">
+                        <button class="zone-nav-btn" id="dashPrevZone">&#8249;</button>
+                        <div class="zone-slots-area" id="dashZoneSlots"></div>
+                        <button class="zone-nav-btn" id="dashNextZone">&#8250;</button>
+                    </div>
+                    <div class="zone-selector-row">
+                        <span class="zone-selector-label">구역 선택</span>
+                        <div class="chip-row" id="dashZoneChips"></div>
+                    </div>
+                </div>
+
+                <!-- 점유율 -->
+                <div class="card occupancy-side-card">
+                    <h3>점유율</h3>
+                    <div class="donut-chart" id="dashboardDonut">
+                        <div class="donut-center-text">
+                            <strong id="donutCenterText">0/0</strong>
+                            <span>남은 칸</span>
+                        </div>
+                    </div>
+                    <div class="legend-list" style="margin-top:18px;">
+                        <div class="legend-item">
+                            <span class="legend-dot red"></span>사용중&nbsp;<strong id="occupiedText">0칸</strong>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot green"></span>이용가능&nbsp;<strong id="availableText">0칸</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 이상상황 목록 -->
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>이상상황 목록</h3>
+                    <span class="danger-count" id="recentAbnormalCount">0건 대기중</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>발생 시간</th>
+                                <th>위치</th>
+                                <th>차량번호</th>
+                                <th>이벤트 유형</th>
+                                <th>상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashboardAbnormalBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>

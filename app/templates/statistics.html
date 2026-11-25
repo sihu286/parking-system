@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통계 및 로그</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="statistics">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <!-- 기간 설정 -->
+            <div class="card filters-card">
+                <div class="section-title-row compact-gap">
+                    <strong>기간 설정</strong>
+                    <div class="chip-row" id="statisticsPeriodButtons">
+                        <button class="chip-btn" data-period="day">일</button>
+                        <button class="chip-btn" data-period="week">주</button>
+                        <button class="chip-btn active" data-period="month">월</button>
+                        <button class="chip-btn" data-period="custom">사용자 지정</button>
+                    </div>
+                </div>
+                <div class="date-range-row hidden" id="statisticsCustomDateRange">
+                    <input type="date" id="statisticsStartDate">
+                    <span>~</span>
+                    <input type="date" id="statisticsEndDate">
+                </div>
+            </div>
+
+            <!-- 차트 2열 -->
+            <div class="chart-2col">
+                <div class="card">
+                    <div class="section-title-row">
+                        <h3>주간 입출차 트렌드</h3>
+                    </div>
+                    <canvas id="trendChart" height="180"></canvas>
+                </div>
+                <div class="card">
+                    <div class="section-title-row">
+                        <h3>위반 유형별 비율</h3>
+                    </div>
+                    <canvas id="violationPieChart" height="180"></canvas>
+                    <div class="legend-list" id="statisticsLegend" style="margin-top:14px;"></div>
+                </div>
+            </div>
+
+            <!-- 최신 입출차 로그 -->
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>최신 입출차 로그</h3>
+                    <input type="text" id="statisticsLogSearch" class="table-search-input" placeholder="차량번호 및 이벤트 유형 검색">
+                </div>
+                <div class="table-wrap statistics-log-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>시간</th>
+                                <th>이벤트</th>
+                                <th>차량번호</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statisticsLogBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/statistics.js"></script>
+</body>
+</html>

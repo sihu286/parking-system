@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장비이상 로그</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="device_error">
+<div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main-shell">
+        <header class="topbar" id="topbar"></header>
+        <main class="page-content">
+
+            <div class="card filters-card">
+                <div class="section-title-row compact-gap">
+                    <strong>기간 설정</strong>
+                    <div class="chip-row" id="periodButtons">
+                        <button class="chip-btn active" data-period="all">전체</button>
+                        <button class="chip-btn" data-period="day">일</button>
+                        <button class="chip-btn" data-period="week">주</button>
+                        <button class="chip-btn" data-period="month">월</button>
+                        <button class="chip-btn" data-period="custom">사용자 지정</button>
+                    </div>
+                </div>
+                <div class="date-range-row hidden" id="customDateRange">
+                    <input type="date" id="deviceErrorStartDate">
+                    <span>~</span>
+                    <input type="date" id="deviceErrorEndDate">
+                </div>
+            </div>
+
+            <div class="abnormal-stat-row">
+                <div class="abnormal-stat-card active" data-status="전체">
+                    <div class="abnormal-stat-title">전체</div>
+                    <div class="abnormal-stat-value" id="deviceErrorStatTotal">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="미처리">
+                    <div class="abnormal-stat-title">미처리</div>
+                    <div class="abnormal-stat-value red" id="deviceErrorStatPending">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="처리중">
+                    <div class="abnormal-stat-title">처리 중</div>
+                    <div class="abnormal-stat-value yellow" id="deviceErrorStatProcessing">0</div>
+                </div>
+                <div class="abnormal-stat-card" data-status="완료">
+                    <div class="abnormal-stat-title">완료</div>
+                    <div class="abnormal-stat-value green" id="deviceErrorStatDone">0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title-row space-between">
+                    <h3>장비이상 로그 목록</h3>
+                    <span class="subtle-badge" id="deviceErrorRoleInfo"></span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>감지 시간</th>
+                                <th>장치 종류</th>
+                                <th>장치 번호</th>
+                                <th>에러 코드</th>
+                                <th>상세 내역</th>
+                                <th>상태 변경</th>
+                                <th>조치 내용</th>
+                                <th>저장</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deviceErrorTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/device_error.js"></script>
+</body>
+</html>

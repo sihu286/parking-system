@@ -1,0 +1,13 @@
+.git
+.gitignore
+.gcloudignore
+.idea/
+app/.idea/
+venv/
+__pycache__/
+*.py[cod]
+*.zip
+.env
+.env.*
+app/db/config.py
+.venv/

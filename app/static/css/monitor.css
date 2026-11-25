@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* 사이드 */
+.sidebar {
+    width: 200px;
+    background: #1e3a5f;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* 메인 */
+.main {
+    flex: 1;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* 카드 */
+.card {
+    background: #2b6f84;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* 주차 슬롯 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.slot {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* 상태 */
+.empty { background: #4caf50; }
+.occupied { background: #ffc107; }
+.abnormal { background: #f44336; }

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="brand-title">주차 관제 시스템</div>
+            <div class="brand-sub">RFID Parking Admin</div>
+        </div>
+
+        <nav class="menu">
+            <button class="menu-item active">대시보드</button>
+            <button class="menu-item" onclick="goMonitor()">실시간 모니터링</button>
+            <button class="menu-item">이상 상황 관리</button>
+            <button class="menu-item">통계 및 로그</button>
+            <button class="menu-item">장애인 차량 등록</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            © 2026 Smart Parking System
+        </div>
+    </aside>
+
+    <!-- 메인 -->
+    <main class="content">
+        <header class="topbar">
+            <h1>실시간 모니터링</h1>
+
+            <div class="topbar-right">
+                <div class="clock-box" id="clockBox">2026-04-05 16:11:49</div>
+                <div class="user-box">최고관리자 (admin)</div>
+                <div class="role-badge">관리자</div>
+                <button class="logout-btn" onclick="logout()">로그아웃</button>
+            </div>
+        </header>
+
+        <section class="main-grid">
+            <!-- 좌측 큰 카드 -->
+            <div class="panel panel-large">
+                <div class="panel-header">
+                    <h2>구역별 현황</h2>
+                </div>
+
+                <div class="zone-summary">
+                    <div class="zone-summary-chip">전체 구역</div>
+                    <div class="zone-summary-text">총 <strong id="totalSlotCount">48</strong>개 구획</div>
+                </div>
+
+                <div class="zones-grid">
+                    <div class="zone-card">
+                        <div class="zone-card-header">
+                            <div class="zone-title blue-dot">동쪽 구역</div>
+                            <div class="zone-meta"><span id="eastUsed">0</span>/<span id="eastTotal">16</span></div>
+                        </div>
+                        <div class="zone-progress">
+                            <div class="zone-progress-bar" id="eastBar"></div>
+                        </div>
+                        <div class="zone-percent" id="eastPercent">0%</div>
+                        <div class="slot-row" id="eastSlots"></div>
+                    </div>
+
+                    <div class="zone-card">
+                        <div class="zone-card-header">
+                            <div class="zone-title green-dot">서쪽 구역</div>
+                            <div class="zone-meta"><span id="westUsed">0</span>/<span id="westTotal">16</span></div>
+                        </div>
+                        <div class="zone-progress">
+                            <div class="zone-progress-bar" id="westBar"></div>
+                        </div>
+                        <div class="zone-percent" id="westPercent">0%</div>
+                        <div class="slot-row" id="westSlots"></div>
+                    </div>
+
+                    <div class="zone-card">
+                        <div class="zone-card-header">
+                            <div class="zone-title purple-dot">남쪽 구역</div>
+                            <div class="zone-meta"><span id="southUsed">0</span>/<span id="southTotal">10</span></div>
+                        </div>
+                        <div class="zone-progress">
+                            <div class="zone-progress-bar" id="southBar"></div>
+                        </div>
+                        <div class="zone-percent" id="southPercent">0%</div>
+                        <div class="slot-row" id="southSlots"></div>
+                    </div>
+
+                    <div class="zone-card">
+                        <div class="zone-card-header">
+                            <div class="zone-title orange-dot">장애인 전용</div>
+                            <div class="zone-meta"><span id="disabledUsed">0</span>/<span id="disabledTotal">6</span></div>
+                        </div>
+                        <div class="zone-progress">
+                            <div class="zone-progress-bar" id="disabledBar"></div>
+                        </div>
+                        <div class="zone-percent" id="disabledPercent">0%</div>
+                        <div class="slot-row" id="disabledSlots"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 우측 패널 -->
+            <div class="side-panels">
+                <div class="panel side-panel">
+                    <div class="panel-header">
+                        <h2>주차 구역 점유율</h2>
+                    </div>
+
+                    <div class="donut-wrap">
+                        <div class="donut" id="donutChart">
+                            <div class="donut-center">
+                                <div class="donut-number"><span id="availableCount">37</span>/<span id="donutTotal">48</span></div>
+                                <div class="donut-label">남은 칸</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <div class="legend-item">
+                            <span class="legend-dot red"></span>
+                            <span>사용중</span>
+                            <strong id="occupiedCount">11칸</strong>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot green"></span>
+                            <span>이용가능</span>
+                            <strong id="emptyCount">37칸</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel side-panel">
+                    <div class="panel-header">
+                        <h2>구역별 현황</h2>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-stat-row">
+                            <span>동쪽</span>
+                            <span><span id="eastMiniUsed">0</span>/<span id="eastMiniTotal">16</span></span>
+                            <span id="eastMiniPercent">0%</span>
+                        </div>
+                        <div class="mini-progress"><div class="mini-progress-bar" id="eastMiniBar"></div></div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-stat-row">
+                            <span>서쪽</span>
+                            <span><span id="westMiniUsed">0</span>/<span id="westMiniTotal">16</span></span>
+                            <span id="westMiniPercent">0%</span>
+                        </div>
+                        <div class="mini-progress"><div class="mini-progress-bar" id="westMiniBar"></div></div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-stat-row">
+                            <span>남쪽</span>
+                            <span><span id="southMiniUsed">0</span>/<span id="southMiniTotal">10</span></span>
+                            <span id="southMiniPercent">0%</span>
+                        </div>
+                        <div class="mini-progress"><div class="mini-progress-bar" id="southMiniBar"></div></div>
+                    </div>
+
+                    <div class="mini-stat">
+                        <div class="mini-stat-row">
+                            <span>장애인</span>
+                            <span><span id="disabledMiniUsed">0</span>/<span id="disabledMiniTotal">6</span></span>
+                            <span id="disabledMiniPercent">0%</span>
+                        </div>
+                        <div class="mini-progress"><div class="mini-progress-bar" id="disabledMiniBar"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 최근 이상 상황 -->
+        <section class="panel table-panel">
+            <div class="panel-header table-header">
+                <h2>최근 이상 상황</h2>
+                <div class="danger-text">5건 대기중</div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>발생 시간</th>
+                        <th>위치</th>
+                        <th>차량번호</th>
+                        <th>이벤트 유형</th>
+                        <th>상태</th>
+                    </tr>
+                    </thead>
+                    <tbody id="eventTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>
